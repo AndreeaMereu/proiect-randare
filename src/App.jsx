@@ -5,35 +5,37 @@ const LivrareCargus = () => {
 }
 
 function getColor(count) {
-  if (count < 36) {
+  if (count >= 24 && count < 36) {
     return "standard";
   }
 
-  if (count >= 10 && count < 24) {
+  if (count >= 6 && count < 24) {
     return "redCode";
   }
 
   if (count >= 1 && count < 6) {
     return "express";
   }
+
+  return "termen-livrare-depasit";
 }
 
 function TipLivrare({ count, className }) {
-  if (count < 36) {
+  if (count >= 24 && count < 36) {
     return <h2 className={className}>Standard</h2>;
   }
 
-  if (count >= 10 && count < 24) {
+  if (count >= 6 && count < 24) {
     return <h2 className={className}>Red Code</h2>;
   }
 
   if (count >= 1 && count < 6) {
     return <h2 className={className}>Express Loco</h2>;
   }
+  return <h2 className={className}>Termen livrare depasit</h2>
 }
 
-function IntervalLivrare () {
-  const [count, setCount] = useState(0);
+function IntervalLivrare ({count, setCount}) {
   const handleOnIncrementClick = () => {
     setCount(count + 1);
   };
@@ -52,12 +54,13 @@ function IntervalLivrare () {
 };
 
 function App () {
+const [count, setCount] = useState(0);
 return (
   <div>
   <LivrareCargus />
-  <IntervalLivrare />
-  <IntervalLivrare />
-  <IntervalLivrare />
+  <IntervalLivrare count={count} setCount={setCount} />
+  <IntervalLivrare count={count} setCount={setCount} />
+  <IntervalLivrare count={count} setCount={setCount} />
 </div>
 );
 }
